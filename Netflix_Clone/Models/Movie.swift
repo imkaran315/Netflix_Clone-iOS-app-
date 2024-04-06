@@ -22,3 +22,15 @@ struct Movie: Codable {
     let release_date: String?
     let vote_average: Double
 }
+
+
+
+/// Remaining Things to implement in the app
+///    1 HeaderView to Play the title
+///    2 HeaderView to Save the title
+///
+///    4 Configure Save Button to save the title from Title Preview Screen
+///
+///     Done -
+///     3 Search Results cell to play directly through context menu config
+

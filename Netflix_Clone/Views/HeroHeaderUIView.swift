@@ -14,7 +14,6 @@ class HeroHeaderUIView: UIView {
         let imageview = UIImageView()
         imageview.contentMode = .scaleAspectFill
         imageview.clipsToBounds = true
-        imageview.image = UIImage(named: "HeroHeaderPoster")
         return imageview
     }()
     
@@ -29,15 +28,24 @@ class HeroHeaderUIView: UIView {
         return button
     }()
     
-    /// Setting up Download Button
-    private let downloadButton: UIButton = {
+    /// Setting up Save Button
+    private let saveButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Download", for: .normal)
+        button.setTitle("Save", for: .normal)
         button.layer.borderColor = UIColor.white.cgColor
         button.layer.borderWidth = 1
         button.layer.cornerRadius = 5
         button.translatesAutoresizingMaskIntoConstraints = false
+        
+      
         return button
+    }()
+    
+    private let nameLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
     }()
     
     
@@ -56,20 +64,38 @@ class HeroHeaderUIView: UIView {
     
     // Constraints for layout of PlayButton
     private func applyConstraints(){
+        
+        let heroImageViewConstraints = [
+            heroImageView.topAnchor.constraint(equalTo: topAnchor, constant: 0)
+        ]
+        
         let playButtonConstraints = [
             playButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 70),
             playButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -100),
             playButton.widthAnchor.constraint(equalToConstant: 100)
         ]
         
-        let downloadButtonConstraints = [
-            downloadButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -70),
-            downloadButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -100),
-            downloadButton.widthAnchor.constraint(equalToConstant: 110)
+        let saveButtonConstraints = [
+            saveButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -70),
+            saveButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -100),
+            saveButton.widthAnchor.constraint(equalToConstant: 110)
         ]
         
+        let nameLabelConstraints = [
+            nameLabel.topAnchor.constraint(equalTo: playButton.bottomAnchor, constant: 15),
+            nameLabel.centerXAnchor.constraint(equalTo: centerXAnchor)
+        ]
+        NSLayoutConstraint.activate(heroImageViewConstraints)
         NSLayoutConstraint.activate(playButtonConstraints)
-        NSLayoutConstraint.activate(downloadButtonConstraints)
+        NSLayoutConstraint.activate(saveButtonConstraints)
+        NSLayoutConstraint.activate(nameLabelConstraints)
+    }
+    
+    public func confirgure(with model: String, name: String?){
+        let url = URL(string: "https://image.tmdb.org/t/p/w500/\(model)")
+        heroImageView.sd_setImage(with: url)
+        nameLabel.text = name ?? ""
+        
     }
     
     
@@ -78,7 +104,9 @@ class HeroHeaderUIView: UIView {
         addSubview(heroImageView)
         addGradient()
         addSubview(playButton)
-        addSubview(downloadButton)
+        addSubview(saveButton)
+        addSubview(nameLabel)
+       
         applyConstraints()
         
     }

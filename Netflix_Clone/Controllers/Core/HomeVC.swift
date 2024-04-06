@@ -20,6 +20,7 @@ class HomeVC: UIViewController {
     
     private let homeFeedTable :UITableView  = {
         let table = UITableView(frame: .zero, style: .grouped)
+        table.tintColor = .white;  
         table.register(CollectionViewTableViewCell.self, forCellReuseIdentifier: "CollectionViewTableViewCell")
         return table
     }()
@@ -30,26 +31,48 @@ class HomeVC: UIViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: image, style: .done, target: self, action: nil)
         
         navigationItem.rightBarButtonItems = [
-            UIBarButtonItem(image: UIImage(systemName: "person"), style: .done, target: self, action: nil)
+            UIBarButtonItem(image: UIImage(systemName: "person"), style: .done, target: self, action: nil),
+            UIBarButtonItem(image: UIImage(systemName: "magnifyingglass"), style: .done, target: self, action: #selector(searchButtonPressed))
+           
         ]
         
         navigationController?.navigationBar.tintColor = .white
     }
+    
+    @objc func searchButtonPressed(){
+        let searchPage = SearchVC()
+        
+        navigationController?.pushViewController(searchPage, animated: false)
+    }
  
+    private func configureHeroHeaderView(){
+        let headerView = HeroHeaderUIView(frame:CGRect(x: 0, y: 0, width: view.bounds.width, height:550))
+        APICaller.shared.getTrendingMovies { results in
+            switch results {
+            case .success(let title):
+                DispatchQueue.main.async{
+                    let title = title[Int.random(in: 0...9)]
+                    headerView.confirgure(with: title.poster_path ?? "", name: title.original_title ?? title.original_name ?? "")
+                    
+                }
+            case .failure(let e):
+                print(e.localizedDescription)
+            }
+        }
+        homeFeedTable.tableHeaderView = headerView
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(homeFeedTable)
-        configureNavBar()
         
+        view.addSubview(homeFeedTable)
+        view.backgroundColor = .systemBlue
         homeFeedTable.delegate = self
         homeFeedTable.dataSource = self
         
-        /// setup the Hero Header View for home page
-        let headerView = HeroHeaderUIView(frame:CGRect(x: 0, y: 0, width: view.bounds.width, height: 500))
-        homeFeedTable.tableHeaderView = headerView
+        configureNavBar()
+        configureHeroHeaderView()
         
-
     }
     
     override func viewDidLayoutSubviews() {
@@ -80,6 +103,9 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource{
             return UITableViewCell()
         }
         
+        cell.delegate = self
+        
+        
         switch indexPath.section{
         case Sections.TrendingMovies.rawValue:
             APICaller.shared.getTrendingMovies { results in
@@ -100,16 +126,6 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource{
                     print(error.localizedDescription)
                 }
             }
-//            
-//        case Sections.Popular.rawValue:
-//            APICaller.shared.getPopularMovies { results in
-//                switch results{
-//                case.success(let titles):
-//                    cell.configure(with: titles)
-//                case .failure(let error):
-//                    print(error.localizedDescription)
-//                }
-//            }
             
         case Sections.Upcoming.rawValue:
             APICaller.shared.getUpcomingMovies { results in
@@ -149,7 +165,24 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource{
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let defaultOffset = view.safeAreaInsets.top
         let offset = scrollView.contentOffset.y + defaultOffset
+
         
         navigationController?.navigationBar.transform = .init(translationX: 0, y: min(0, -offset))
     }
 }
+
+/// Collection View Cell previews the video
+extension HomeVC: CollectionViewTableViewCellDelegate{
+    func collectionViewTableViewCellDidSelect(with title: String, viewModel: TitlePreviewVM) {
+
+        DispatchQueue.main.async{ [weak self] in
+            let vc = TitlePreviewVC()
+            vc.configure(with: viewModel)
+            
+            print("Here")
+            self?.navigationController?.pushViewController(vc, animated: true)
+           
+        }
+     }
+    }
+    

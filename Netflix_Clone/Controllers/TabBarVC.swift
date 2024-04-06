@@ -15,7 +15,7 @@ class TabBarVC: UITabBarController {
         let vc1 = HomeVC()
         let vc2 = UpcomingVC()
         let vc3 = SearchVC()
-        let vc4 = DownloadsVC()
+        let vc4 = LibraryVC()
         
         let nav1 = UINavigationController(rootViewController: vc1)
         let nav2 = UINavigationController(rootViewController: vc2)
@@ -26,13 +26,13 @@ class TabBarVC: UITabBarController {
         nav1.tabBarItem = UITabBarItem(title: "Home", image: UIImage(systemName: "house"), tag: 1)
         nav2.tabBarItem = UITabBarItem(title: "Upcoming", image: UIImage(systemName: "play.circle"), tag: 1)
         nav3.tabBarItem = UITabBarItem(title: "Search", image: UIImage(systemName: "magnifyingglass"), tag: 1)
-        nav4.tabBarItem = UITabBarItem(title: "Downloads", image: UIImage(systemName: "arrow.down.to.line"), tag: 1)
+        nav4.tabBarItem = UITabBarItem(title: "Library", image: UIImage(systemName: "arrow.down.to.line"), tag: 1)
         
         ///changes tint of tabbar label to label colour instead of blue
          tabBar.tintColor = .label
         
         /// pushes these vcs on display
-        setViewControllers([nav1,nav2,nav3,nav4], animated: false)
+        setViewControllers([nav1,nav3,nav2,nav4], animated: false)
     }
 
 
