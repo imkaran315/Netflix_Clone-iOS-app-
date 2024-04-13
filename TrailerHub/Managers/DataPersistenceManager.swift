@@ -34,8 +34,8 @@ struct DataPersistenceManager {
         item.overview = model.overview
         item.poster_path = model.poster_path
         item.media_type = model.media_type
-        item.vote_count = Double(model.vote_count)
-        item.vote_average = Int64(model.vote_average)
+        item.vote_count = Int64(model.vote_count)
+        item.vote_average = model.vote_average
         item.release_date = model.release_date
         
         do{

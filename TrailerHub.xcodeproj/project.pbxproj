@@ -9,11 +9,11 @@
 /* Begin PBXBuildFile section */
 		312B3F672B97617000CC2A01 /* TitleVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 312B3F662B97617000CC2A01 /* TitleVM.swift */; };
 		312B3F692B98A9DF00CC2A01 /* SearchResultsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 312B3F682B98A9DF00CC2A01 /* SearchResultsVC.swift */; };
+		3138606A2BCB0674001EE7ED /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 313860682BCB0674001EE7ED /* Model.xcdatamodeld */; };
 		3141092F2B93356A00454AAE /* TitleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3141092E2B93356A00454AAE /* TitleCollectionViewCell.swift */; };
 		314109322B933BA800454AAE /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 314109312B933BA800454AAE /* SDWebImage */; };
 		314109342B94BF3F00454AAE /* TitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314109332B94BF3F00454AAE /* TitleTableViewCell.swift */; };
 		3149BB302BA474FC00E756F4 /* DataPersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3149BB2F2BA474FC00E756F4 /* DataPersistenceManager.swift */; };
-		315CDFEF2BA44FB100BBABE7 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 315CDFED2BA44FB100BBABE7 /* Model.xcdatamodeld */; };
 		319F95092B7C0279008915D0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319F95082B7C0279008915D0 /* AppDelegate.swift */; };
 		319F950B2B7C0279008915D0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319F950A2B7C0279008915D0 /* SceneDelegate.swift */; };
 		319F950D2B7C0279008915D0 /* TabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319F950C2B7C0279008915D0 /* TabBarVC.swift */; };
@@ -35,10 +35,10 @@
 /* Begin PBXFileReference section */
 		312B3F662B97617000CC2A01 /* TitleVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleVM.swift; sourceTree = "<group>"; };
 		312B3F682B98A9DF00CC2A01 /* SearchResultsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsVC.swift; sourceTree = "<group>"; };
+		313860692BCB0674001EE7ED /* MovieTitleDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MovieTitleDataModel.xcdatamodel; sourceTree = "<group>"; };
 		3141092E2B93356A00454AAE /* TitleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleCollectionViewCell.swift; sourceTree = "<group>"; };
 		314109332B94BF3F00454AAE /* TitleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleTableViewCell.swift; sourceTree = "<group>"; };
 		3149BB2F2BA474FC00E756F4 /* DataPersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPersistenceManager.swift; sourceTree = "<group>"; };
-		315CDFEE2BA44FB100BBABE7 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		319F95052B7C0279008915D0 /* TrailerHub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrailerHub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		319F95082B7C0279008915D0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		319F950A2B7C0279008915D0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -74,7 +74,6 @@
 		319F94FC2B7C0279008915D0 = {
 			isa = PBXGroup;
 			children = (
-				315CDFED2BA44FB100BBABE7 /* Model.xcdatamodeld */,
 				319F95072B7C0279008915D0 /* TrailerHub */,
 				319F95062B7C0279008915D0 /* Products */,
 			);
@@ -101,6 +100,7 @@
 				319F95112B7C027A008915D0 /* Assets.xcassets */,
 				319F95132B7C027A008915D0 /* LaunchScreen.storyboard */,
 				319F95162B7C027A008915D0 /* Info.plist */,
+				313860682BCB0674001EE7ED /* Model.xcdatamodeld */,
 			);
 			path = TrailerHub;
 			sourceTree = "<group>";
@@ -257,9 +257,9 @@
 				3141092F2B93356A00454AAE /* TitleCollectionViewCell.swift in Sources */,
 				312B3F672B97617000CC2A01 /* TitleVM.swift in Sources */,
 				312B3F692B98A9DF00CC2A01 /* SearchResultsVC.swift in Sources */,
+				3138606A2BCB0674001EE7ED /* Model.xcdatamodeld in Sources */,
 				31A2901C2B8F7E8E00A3569C /* Movie.swift in Sources */,
 				319F950B2B7C0279008915D0 /* SceneDelegate.swift in Sources */,
-				315CDFEF2BA44FB100BBABE7 /* Model.xcdatamodeld in Sources */,
 				31F203B92B99E3960064955F /* TitlePreviewVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -406,7 +406,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = T9HU79695H;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Netflix_Clone/Info.plist;
+				INFOPLIST_FILE = TrailerHub/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = TrailerHub;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -434,7 +434,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = T9HU79695H;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Netflix_Clone/Info.plist;
+				INFOPLIST_FILE = TrailerHub/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = TrailerHub;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -496,14 +496,14 @@
 /* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
-		315CDFED2BA44FB100BBABE7 /* Model.xcdatamodeld */ = {
+		313860682BCB0674001EE7ED /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				315CDFEE2BA44FB100BBABE7 /* Model.xcdatamodel */,
+				313860692BCB0674001EE7ED /* MovieTitleDataModel.xcdatamodel */,
 			);
-			currentVersion = 315CDFEE2BA44FB100BBABE7 /* Model.xcdatamodel */;
+			currentVersion = 313860692BCB0674001EE7ED /* MovieTitleDataModel.xcdatamodel */;
 			name = Model.xcdatamodeld;
-			path = /Users/karanverma/Documents/Karan/Projects/iOS/Netflix_Clone/Model.xcdatamodeld;
+			path = /Users/karanverma/Documents/Karan/TrailerHub/TrailerHub/Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
